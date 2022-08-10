@@ -15,6 +15,7 @@ class PasswordValidationTest {
     val PWD_WITHOUT_UPPERCASE = NEUTRAL + LOWERCASE + NUMBER + UNDERSCORE + NEUTRAL.repeat(5)
     val PWD_WITHOUT_LOWERCASE = UPPERCASE + NEUTRAL + NUMBER + UNDERSCORE + NEUTRAL.repeat(5)
     val PWD_WITHOUT_NUMBER = UPPERCASE + LOWERCASE + NEUTRAL + UNDERSCORE + NEUTRAL.repeat(5)
+    val PWD_WITHOUT_UNDERSCORE = UPPERCASE + LOWERCASE + NUMBER + NEUTRAL + NEUTRAL.repeat(5)
 
     @Nested
     inner class InvalidPasswords {
@@ -38,6 +39,11 @@ class PasswordValidationTest {
         @Test
         fun `should have a number`() {
             assertFalse(PasswordPattern.validation(PWD_WITHOUT_NUMBER))
+        }
+
+        @Test
+        fun `should have an underscore`() {
+            assertFalse(PasswordPattern.validation(PWD_WITHOUT_UNDERSCORE))
         }
     }
 
