@@ -7,6 +7,9 @@ class PasswordPattern {
             if( password.count { it.isUpperCase() } == 0 )
                 return false
 
+            if( password.count { it.isLowerCase() } == 0 )
+                return false
+
             return true
         }
     }
