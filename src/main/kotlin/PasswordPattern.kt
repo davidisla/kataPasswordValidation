@@ -1,7 +1,10 @@
 class PasswordPattern {
     companion object {
         fun validation(password: String): Boolean {
-            return false
+            if( password.length < 9 )
+                return false
+
+            return true
         }
     }
 
