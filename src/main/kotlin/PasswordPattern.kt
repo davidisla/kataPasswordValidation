@@ -4,6 +4,9 @@ class PasswordPattern {
             if( password.length < 9 )
                 return false
 
+            if( password.count { it.isUpperCase() } == 0 )
+                return false
+
             return true
         }
     }
