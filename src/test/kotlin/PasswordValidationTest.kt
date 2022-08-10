@@ -14,6 +14,7 @@ class PasswordValidationTest {
     val PWD_8_CHARACTERS = UPPERCASE + LOWERCASE + NUMBER + UNDERSCORE + NEUTRAL.repeat(4)
     val PWD_WITHOUT_UPPERCASE = NEUTRAL + LOWERCASE + NUMBER + UNDERSCORE + NEUTRAL.repeat(5)
     val PWD_WITHOUT_LOWERCASE = UPPERCASE + NEUTRAL + NUMBER + UNDERSCORE + NEUTRAL.repeat(5)
+    val PWD_WITHOUT_NUMBER = UPPERCASE + LOWERCASE + NEUTRAL + UNDERSCORE + NEUTRAL.repeat(5)
 
     @Nested
     inner class InvalidPasswords {
@@ -32,6 +33,11 @@ class PasswordValidationTest {
         @Test
         fun `should have a lowercase letter`() {
             assertFalse(PasswordPattern.validation(PWD_WITHOUT_LOWERCASE))
+        }
+
+        @Test
+        fun `should have a number`() {
+            assertFalse(PasswordPattern.validation(PWD_WITHOUT_NUMBER))
         }
     }
 
