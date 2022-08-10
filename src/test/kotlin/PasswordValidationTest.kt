@@ -10,6 +10,7 @@ class PasswordValidationTest {
         @Test
         fun `should have more than 8 characters`() {
             assertFalse( PasswordPattern.validation("Ab1_") )
+            assertFalse( PasswordPattern.validation("Ab1_5678") )
         }
     }
 }
