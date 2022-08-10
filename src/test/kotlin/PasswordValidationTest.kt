@@ -3,19 +3,25 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 class PasswordValidationTest {
+    fun List<String>.without(value: String) = filter { it != value }
+    fun List<String>.join() = joinToString(separator = "")
 
     val NEUTRAL = "/"
     val UPPERCASE = "A"
     val LOWERCASE = "b"
     val UNDERSCORE = "_"
     val NUMBER = "1"
+    val FILLER4 = NEUTRAL.repeat(4)
+    val FILLER8 = NEUTRAL.repeat(8)
 
-    val PWD_4_CHARACTERS = UPPERCASE + LOWERCASE + NUMBER + UNDERSCORE
-    val PWD_8_CHARACTERS = UPPERCASE + LOWERCASE + NUMBER + UNDERSCORE + NEUTRAL.repeat(4)
-    val PWD_WITHOUT_UPPERCASE = NEUTRAL + LOWERCASE + NUMBER + UNDERSCORE + NEUTRAL.repeat(5)
-    val PWD_WITHOUT_LOWERCASE = UPPERCASE + NEUTRAL + NUMBER + UNDERSCORE + NEUTRAL.repeat(5)
-    val PWD_WITHOUT_NUMBER = UPPERCASE + LOWERCASE + NEUTRAL + UNDERSCORE + NEUTRAL.repeat(5)
-    val PWD_WITHOUT_UNDERSCORE = UPPERCASE + LOWERCASE + NUMBER + NEUTRAL + NEUTRAL.repeat(5)
+    val validPassword = mutableListOf(UPPERCASE, LOWERCASE, NUMBER, UNDERSCORE, FILLER8)
+
+    val PWD_4_CHARACTERS = validPassword.without(FILLER8).join()
+    val PWD_8_CHARACTERS = validPassword.without(FILLER8).plus(FILLER4).join()
+    val PWD_WITHOUT_UPPERCASE = validPassword.without(UPPERCASE).join()
+    val PWD_WITHOUT_LOWERCASE = validPassword.without(LOWERCASE).join()
+    val PWD_WITHOUT_NUMBER = validPassword.without(NUMBER).join()
+    val PWD_WITHOUT_UNDERSCORE = validPassword.without(UNDERSCORE).join()
 
     @Nested
     inner class InvalidPasswords {
