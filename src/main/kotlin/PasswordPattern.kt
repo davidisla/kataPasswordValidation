@@ -13,6 +13,9 @@ class PasswordPattern {
             if( password.count { it.isDigit() } == 0 )
                 return false
 
+            if( password.count { it == '_' } == 0 )
+                return false
+
             return true
         }
     }
