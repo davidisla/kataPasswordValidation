@@ -12,5 +12,10 @@ class PasswordValidationTest {
             assertFalse( PasswordPattern.validation("Ab1_") )
             assertFalse( PasswordPattern.validation("Ab1_5678") )
         }
+
+        @Test
+        fun `should have a capital letter`() {
+            assertFalse( PasswordPattern.validation( "_b1_56789"))
+        }
     }
 }
