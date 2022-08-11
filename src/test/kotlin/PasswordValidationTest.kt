@@ -103,6 +103,22 @@ class PasswordValidationTest {
 
             assertTrue(passwordPattern.validate(password))
         }
+
+        @Test
+        fun `Validation 3 should valid with uppercase, lowercase, digit and more than 16 characters`() {
+
+            val password = UPPERCASE + LOWERCASE + UNDERSCORE + NEUTRAL.repeat(14)
+
+            val passwordPattern = PasswordPattern.Builder()
+                .withMinimumLength(17)
+                .withUppercase()
+                .withLowercase()
+                .withUnderscore()
+                .build()
+
+            assertTrue(passwordPattern.validate(password))
+        }
+
     }
 
 }
