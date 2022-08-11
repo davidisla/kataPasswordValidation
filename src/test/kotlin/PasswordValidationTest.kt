@@ -89,19 +89,19 @@ class PasswordValidationTest {
             }
         }
 
-        @Nested
-        inner class Validation2 {
+        @Test
+        fun `Validation 2 should valid with uppercase, lowercase, digit and more than 6 characters`() {
 
-            @Test
-            fun `should valid with uppercase, lowercase, digit and more than 6 characters`() {
-                val passwordPattern = PasswordPattern.Builder()
-                    .withMinimumLength(7)
-                    .withUppercase()
-                    .withLowercase()
-                    .build()
+            val password = UPPERCASE + LOWERCASE + NUMBER + NEUTRAL.repeat(4)
 
-                assertTrue(passwordPattern.validate(PWD_8_CHARACTERS))
-            }
+            val passwordPattern = PasswordPattern.Builder()
+                .withMinimumLength(7)
+                .withUppercase()
+                .withLowercase()
+                .withDigit()
+                .build()
+
+            assertTrue(passwordPattern.validate(password))
         }
     }
 
