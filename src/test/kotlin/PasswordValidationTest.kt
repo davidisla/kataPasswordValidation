@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 class PasswordValidationTest {
+
     fun List<String>.without(value: String) = filter { it != value }
     fun List<String>.join() = joinToString(separator = "")
 
@@ -26,41 +27,58 @@ class PasswordValidationTest {
     val PWD_WITHOUT_UNDERSCORE = validPassword.without(UNDERSCORE).join()
 
     @Nested
-    inner class InvalidPasswords {
+    inner class Iteration1 {
 
-        @Test
-        fun `should have more than 8 characters`() {
-            assertFalse(PasswordPattern.validation(PWD_4_CHARACTERS))
-            assertFalse(PasswordPattern.validation(PWD_8_CHARACTERS))
+        @Nested
+        inner class InvalidPasswords {
+
+            @Test
+            fun `should have more than 8 characters`() {
+                assertFalse(PasswordPattern.validation(PWD_4_CHARACTERS))
+                assertFalse(PasswordPattern.validation(PWD_8_CHARACTERS))
+            }
+
+            @Test
+            fun `should have a capital letter`() {
+                assertFalse(PasswordPattern.validation(PWD_WITHOUT_UPPERCASE))
+            }
+
+            @Test
+            fun `should have a lowercase letter`() {
+                assertFalse(PasswordPattern.validation(PWD_WITHOUT_LOWERCASE))
+            }
+
+            @Test
+            fun `should have a number`() {
+                assertFalse(PasswordPattern.validation(PWD_WITHOUT_NUMBER))
+            }
+
+            @Test
+            fun `should have an underscore`() {
+                assertFalse(PasswordPattern.validation(PWD_WITHOUT_UNDERSCORE))
+            }
         }
 
-        @Test
-        fun `should have a capital letter`() {
-            assertFalse(PasswordPattern.validation(PWD_WITHOUT_UPPERCASE))
-        }
+        @Nested
+        inner class ValidPassword {
 
-        @Test
-        fun `should have a lowercase letter`() {
-            assertFalse(PasswordPattern.validation(PWD_WITHOUT_LOWERCASE))
-        }
-
-        @Test
-        fun `should have a number`() {
-            assertFalse(PasswordPattern.validation(PWD_WITHOUT_NUMBER))
-        }
-
-        @Test
-        fun `should have an underscore`() {
-            assertFalse(PasswordPattern.validation(PWD_WITHOUT_UNDERSCORE))
+            @Test
+            fun `should be valid with upper + lower + number + underscore and more than 8 length`() {
+                assertTrue(PasswordPattern.validation(PWD_VALID_PASS))
+            }
         }
     }
 
     @Nested
-    inner class ValidPassword {
+    inner class Iteration2 {
 
-        @Test
-        fun `should be valid with upper + lower + number + underscore and more than 8 length`() {
-            assertTrue(PasswordPattern.validation(PWD_VALID_PASS))
+        @Nested
+        inner class BuilderPasswords {
+
+            @Test
+            fun `my design`() {
+
+            }
         }
     }
 
