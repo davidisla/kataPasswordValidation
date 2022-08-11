@@ -88,6 +88,21 @@ class PasswordValidationTest {
                 assertTrue(passwordPattern.validate(PWD_VALID_PASS))
             }
         }
+
+        @Nested
+        inner class Validation2 {
+
+            @Test
+            fun `should valid with uppercase, lowercase, digit and more than 6 characters`() {
+                val passwordPattern = PasswordPattern.Builder()
+                    .withMinimumLength(7)
+                    .withUppercase()
+                    .withLowercase()
+                    .build()
+
+                assertTrue(passwordPattern.validate(PWD_8_CHARACTERS))
+            }
+        }
     }
 
 }
