@@ -1,3 +1,5 @@
+package validations
+
 interface Validation {
 
     /**
@@ -10,16 +12,16 @@ interface Validation {
      *      interface Validation
      *          fun validate(pattern: String): Boolean
      *
-     *      class LengthValidation(val length: Int): Validation
+     *      class validations.LengthValidation(val length: Int): Validation
      *
-     *      val lengthValidation = LengthValidation(16)
+     *      val lengthValidation = validations.LengthValidation(16)
      *
      *      val isValid = lengthValidation.validate(password)
      *
      * To avoid this, I've decided to override the `invoke` operator, looking
      * for this:
      *
-     *      val lengthValidation = LengthValidation(16)
+     *      val lengthValidation = validations.LengthValidation(16)
      *
      *      val isValid = lengthValidation(password)
      *
