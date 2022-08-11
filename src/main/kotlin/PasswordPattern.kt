@@ -1,23 +1,34 @@
 class PasswordPattern {
+
     companion object {
         fun validation(password: String): Boolean {
-            if( password.length < 9 )
+            if (checkLength(password))
                 return false
 
-            if( password.count { it.isUpperCase() } == 0 )
+            if (checkUppercase(password))
                 return false
 
-            if( password.count { it.isLowerCase() } == 0 )
+            if (checkLowercase(password))
                 return false
 
-            if( password.count { it.isDigit() } == 0 )
+            if (checkDigit(password))
                 return false
 
-            if( password.count { it == '_' } == 0 )
+            if (checkUnderscore(password))
                 return false
 
             return true
         }
+
+        private fun checkUnderscore(password: String) = password.count { it == '_' } == 0
+
+        private fun checkDigit(password: String) = password.count { it.isDigit() } == 0
+
+        private fun checkLowercase(password: String) = password.count { it.isLowerCase() } == 0
+
+        private fun checkUppercase(password: String) = password.count { it.isUpperCase() } == 0
+
+        private fun checkLength(password: String) = password.length < 9
     }
 
 }
