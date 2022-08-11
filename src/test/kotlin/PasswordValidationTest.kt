@@ -72,21 +72,17 @@ class PasswordValidationTest {
     @Nested
     inner class Iteration2 {
 
-        @Nested
-        inner class BuilderPasswords {
+        @Test
+        fun `check iteration 1 pattern`() {
+            val passwordPattern = PasswordPattern.Builder()
+                .withMinimumLength(9)
+                .withUppercase()
+                .withLowercase()
+                .withDigit()
+                .withUnderscore()
+                .build()
 
-            @Test
-            fun `check iteration 1 pattern`() {
-                val passwordPattern = PasswordPattern.Builder()
-                    .withMinimumLength(9)
-                    .withUppercase()
-                    .withLowercase()
-                    .withDigit()
-                    .withUnderscore()
-                    .build()
-
-                assertTrue(passwordPattern.validate(PWD_VALID_PASS))
-            }
+            assertTrue(passwordPattern.validate(PWD_VALID_PASS))
         }
 
         @Test
