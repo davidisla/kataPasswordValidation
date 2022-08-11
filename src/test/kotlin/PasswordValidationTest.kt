@@ -76,7 +76,7 @@ class PasswordValidationTest {
         inner class BuilderPasswords {
 
             @Test
-            fun `my design`() {
+            fun `check iteration 1 pattern`() {
                 val passwordPattern = PasswordPattern.Builder()
                     .withMinimumLength(9)
                     .withUppercase()
