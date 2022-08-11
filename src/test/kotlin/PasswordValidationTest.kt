@@ -77,17 +77,15 @@ class PasswordValidationTest {
 
             @Test
             fun `my design`() {
-/*
-                val passwordPattern = PasswordPattern()
+                val passwordPattern = PasswordPattern.Builder()
                     .withMinimumLength(9)
                     .withUppercase()
                     .withLowercase()
-                    .withNumbers()
+                    .withDigit()
                     .withUnderscore()
                     .build()
 
                 assertTrue(passwordPattern.validate(PWD_VALID_PASS))
-*/
             }
         }
     }
