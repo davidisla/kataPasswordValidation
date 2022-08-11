@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
@@ -16,6 +17,7 @@ class PasswordValidationTest {
 
     val validPassword = mutableListOf(UPPERCASE, LOWERCASE, NUMBER, UNDERSCORE, FILLER8)
 
+    val PWD_VALID_PASS = validPassword.join()
     val PWD_4_CHARACTERS = validPassword.without(FILLER8).join()
     val PWD_8_CHARACTERS = validPassword.without(FILLER8).plus(FILLER4).join()
     val PWD_WITHOUT_UPPERCASE = validPassword.without(UPPERCASE).join()
@@ -50,6 +52,15 @@ class PasswordValidationTest {
         @Test
         fun `should have an underscore`() {
             assertFalse(PasswordPattern.validation(PWD_WITHOUT_UNDERSCORE))
+        }
+    }
+
+    @Nested
+    inner class ValidPassword {
+
+        @Test
+        fun `should be valid with upper + lower + number + underscore and more than 8 length`() {
+            assertTrue(PasswordPattern.validation(PWD_VALID_PASS))
         }
     }
 
