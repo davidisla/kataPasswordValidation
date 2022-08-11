@@ -4,7 +4,7 @@ class PasswordPattern private constructor(private val validations: List<Validati
         fun validation(password: String): Boolean {
 
             val validations = listOf(
-                LengthValidation(),
+                LengthValidation(9),
                 UppercaseValidation(),
                 LowercaseValidation(),
                 DigitValidation(),
@@ -36,7 +36,7 @@ class PasswordPattern private constructor(private val validations: List<Validati
         fun build(): PasswordPattern {
             val validations = mutableListOf<Validation>()
 
-            if (minimumLength > 0) validations.add(LengthValidation())
+            if (minimumLength > 0) validations.add(LengthValidation(minimumLength))
             if (withUppercase) validations.add(UppercaseValidation())
             if (withLowercase) validations.add(LowercaseValidation())
             if (withDigit) validations.add(DigitValidation())

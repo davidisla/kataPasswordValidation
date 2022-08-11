@@ -1,4 +1,4 @@
-class LengthValidation : Validation {
+class LengthValidation(private val length: Int) : Validation {
     override fun invoke(pattern: String): Boolean =
-        pattern.length < 9
+        pattern.length < length
 }
