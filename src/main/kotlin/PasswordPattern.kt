@@ -1,25 +1,5 @@
 class PasswordPattern private constructor(private val validations: List<Validation>) {
 
-    companion object {
-        fun validation(password: String): Boolean {
-
-            val validations = listOf(
-                LengthValidation(9),
-                UppercaseValidation(),
-                LowercaseValidation(),
-                DigitValidation(),
-                UnderscoreValidation()
-            )
-
-            validations.forEach {
-                if (it(password))
-                    return false
-            }
-
-            return true
-        }
-    }
-
     data class Builder(
         var minimumLength: Int = 0,
         var withUppercase: Boolean = false,
