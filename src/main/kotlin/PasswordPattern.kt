@@ -17,12 +17,13 @@ class PasswordPattern private constructor(private val validations: List<Validati
         var withLowercase: Boolean = false,
         var withDigit: Boolean = false,
         var withUnderscore: Boolean = false ) {
+
         fun withMinimumLength(minimum: Int) = apply { minimumLength = minimum }
         fun withUppercase() = apply { withUppercase = true }
         fun withLowercase() = apply { withLowercase = true }
         fun withDigit() = apply { withDigit = true }
-
         fun withUnderscore() = apply { withUnderscore = true }
+
         fun build(): PasswordPattern {
             val validations = mutableListOf<Validation>()
 
